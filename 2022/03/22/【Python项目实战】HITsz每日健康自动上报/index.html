@@ -201,7 +201,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      2.5k 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      21 分钟
     </span>
   
 
@@ -268,22 +268,22 @@
 </tbody></table>
 <h2 id="二、HITszDailyReport-函数"><a href="#二、HITszDailyReport-函数" class="headerlink" title="二、HITszDailyReport()函数"></a>二、HITszDailyReport()函数</h2><p>HITsz每日疫情健康上报的网址为：<a target="_blank" rel="noopener" href="https://student.hitsz.edu.cn/xg_mobile/loginChange%EF%BC%8C%E9%80%89%E6%8B%A9%E7%BB%9F%E4%B8%80%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E7%99%BB%E5%BD%95%E4%BC%9A%E8%BF%9B%E8%A1%8C%E8%B7%B3%E8%BD%AC%EF%BC%8C%E8%BE%93%E5%85%A5%E5%AD%A6%E5%8F%B7%E5%92%8C%E5%AF%86%E7%A0%81%E8%BF%9B%E5%85%A5%E4%B8%8B%E4%B8%80%E7%95%8C%E9%9D%A2%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E4%B8%8A%E6%8A%A5%E2%80%A6%E2%80%A6">https://student.hitsz.edu.cn/xg_mobile/loginChange，选择统一身份认证登录会进行跳转，输入学号和密码进入下一界面就可以进行上报……</a></p>
 <p>下面对函数的各个部分进行简要说明：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username = <span class="string">&quot;111111111&quot;</span>  <span class="comment"># 统一身份认证的学号</span></span><br><span class="line">password = <span class="string">&quot;*************&quot;</span>  <span class="comment"># 统一身份认证的密码</span></span><br><span class="line">url = <span class="string">&quot;https://student.hitsz.edu.cn/xg_mobile/loginChange&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs python">username = <span class="hljs-string">&quot;111111111&quot;</span>  <span class="hljs-comment"># 统一身份认证的学号</span><br>password = <span class="hljs-string">&quot;*************&quot;</span>  <span class="hljs-comment"># 统一身份认证的密码</span><br>url = <span class="hljs-string">&quot;https://student.hitsz.edu.cn/xg_mobile/loginChange&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>指定webdriver的一些参数，设置<strong>隐式等待时间</strong>等。</p>
 <blockquote>
 <p>大多数Web应用程序都是使用Ajax和Javascript开发的。当浏览器加载页面时，我们想要与之交互的元素可能以不同的时间间隔加载。隐式等待将告诉Web驱动程序在抛出“No Such Element Exception”之前等待一定的时间。Web驱动程序将在抛出异常之前等待该时间。</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">option = webdriver.EdgeOptions()</span><br><span class="line">option.add_argument(<span class="string">&#x27;window-size=1920x3000&#x27;</span>)  <span class="comment"># 指定浏览器分辨率</span></span><br><span class="line">option.add_argument(<span class="string">&#x27;--disable-gpu&#x27;</span>)</span><br><span class="line">option.add_argument(<span class="string">&#x27;--hide-scrollbars&#x27;</span>)  <span class="comment"># 隐藏滚动条, 应对一些特殊页面</span></span><br><span class="line"></span><br><span class="line">web = webdriver.Edge(options=option)</span><br><span class="line">web.maximize_window()</span><br><span class="line">web.implicitly_wait(<span class="number">30</span>)</span><br><span class="line">web.get(url)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">option = webdriver.EdgeOptions()<br>option.add_argument(<span class="hljs-string">&#x27;window-size=1920x3000&#x27;</span>)  <span class="hljs-comment"># 指定浏览器分辨率</span><br>option.add_argument(<span class="hljs-string">&#x27;--disable-gpu&#x27;</span>)<br>option.add_argument(<span class="hljs-string">&#x27;--hide-scrollbars&#x27;</span>)  <span class="hljs-comment"># 隐藏滚动条, 应对一些特殊页面</span><br><br>web = webdriver.Edge(options=option)<br>web.maximize_window()<br>web.implicitly_wait(<span class="hljs-number">30</span>)<br>web.get(url)<br></code></pre></td></tr></table></figure>
 
 <p>定位元素，主要采用了根据class属性，ID属性和Xpath进行选择元素的方式，以定位其中一个元素为例：</p>
 <p>进入需要定位的网页，<strong>右键-&gt;检查（或者F12)</strong>,</p>
 <p><img src="https://s3.bmp.ovh/imgs/2022/03/be73fd523fb1babc.png" srcset="/img/loading.gif" lazyload></p>
 <p>可以看到需要点击的元素的class属性是<strong>“part_action_left”</strong>，选择并进行点击</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web.find_element(By.CLASS_NAME, <span class="string">&quot;part_action_left&quot;</span>).click()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">web.find_element(By.CLASS_NAME, <span class="hljs-string">&quot;part_action_left&quot;</span>).click()<br></code></pre></td></tr></table></figure>
 
 <p>HITszDailyReport()函数操作元素的全部代码为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">web.find_element(By.CLASS_NAME, <span class="string">&quot;ty_btn&quot;</span>).click()</span><br><span class="line">web.find_element(By.CLASS_NAME, <span class="string">&quot;login_box_inputuser&quot;</span>).send_keys(username)</span><br><span class="line">web.find_element(By.CLASS_NAME, <span class="string">&quot;login_box_inputpassword&quot;</span>).send_keys(password)</span><br><span class="line">web.find_element(By.CLASS_NAME, <span class="string">&quot;login_box_landing_btn&quot;</span>).click()</span><br><span class="line">web.find_element(By.CLASS_NAME, <span class="string">&quot;part_action_left&quot;</span>).click()</span><br><span class="line">web.find_element(By.ID, <span class="string">&quot;dtjwd&quot;</span>).click()</span><br><span class="line">time.sleep(<span class="number">5</span>)</span><br><span class="line">commit1 = web.find_element(By.XPATH, <span class="string">&quot;/html/body/div[2]/div[2]/div[2]/div/div/div[1]/div[62]/label&quot;</span>)</span><br><span class="line">webdriver.ActionChains(web).move_to_element(commit1).click(commit1).perform()</span><br><span class="line">web.find_element(By.XPATH, <span class="string">&quot;/html/body/div[2]/div[2]/div[2]/div/div/div[1]/div[63]/div/div&quot;</span>).click()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">web.find_element(By.CLASS_NAME, <span class="hljs-string">&quot;ty_btn&quot;</span>).click()<br>web.find_element(By.CLASS_NAME, <span class="hljs-string">&quot;login_box_inputuser&quot;</span>).send_keys(username)<br>web.find_element(By.CLASS_NAME, <span class="hljs-string">&quot;login_box_inputpassword&quot;</span>).send_keys(password)<br>web.find_element(By.CLASS_NAME, <span class="hljs-string">&quot;login_box_landing_btn&quot;</span>).click()<br>web.find_element(By.CLASS_NAME, <span class="hljs-string">&quot;part_action_left&quot;</span>).click()<br>web.find_element(By.ID, <span class="hljs-string">&quot;dtjwd&quot;</span>).click()<br>time.sleep(<span class="hljs-number">5</span>)<br>commit1 = web.find_element(By.XPATH, <span class="hljs-string">&quot;/html/body/div[2]/div[2]/div[2]/div/div/div[1]/div[62]/label&quot;</span>)<br>webdriver.ActionChains(web).move_to_element(commit1).click(commit1).perform()<br>web.find_element(By.XPATH, <span class="hljs-string">&quot;/html/body/div[2]/div[2]/div[2]/div/div/div[1]/div[63]/div/div&quot;</span>).click()<br></code></pre></td></tr></table></figure>
 
 <p>Python的代码已完成，运行程序，可以成功进行每日上报……</p>
 <h2 id="三、定时运行"><a href="#三、定时运行" class="headerlink" title="三、定时运行"></a>三、定时运行</h2><p>上面的程序虽然可以进行上报，但仍然需要每天进行点击运行，而且对电脑上未安装python环境的同学来说很不友好，实现定时上报的方法有很多种，</p>
@@ -295,7 +295,7 @@
 </ul>
 <p>这里采用Windows的任务计划程序来定时执行，首先将python文件打包成exe可执行文件，</p>
 <p>在cmd命令行下输入以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDOWS\system32&gt;pyinstaller main.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">C:\WINDOWS\system32&gt;pyinstaller main.py<br></code></pre></td></tr></table></figure>
 
 <p>其中main.py是包含HITszDailyReport()函数的python文件。</p>
 <blockquote>
